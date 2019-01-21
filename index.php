@@ -6,6 +6,11 @@ require_once 'koneksi.php';
 if(isset($_SESSION['pelanggan'])) {
   $data = $_SESSION['pelanggan']; 
 }
+
+if(isset($_SESSION['keranjang'])) {
+  $keranjang = $_SESSION['keranjang'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -66,18 +71,32 @@ if(isset($_SESSION['pelanggan'])) {
         <a href="index.php?halaman=profil&page=tambahproduk" class="btn btn-danger btn-sm my-1" type="submit" title="Jual Produk"><i class="fas fa-plus"></i> Jual Produk</a>  
       </li>
     <?php else: ?> 
-      <li class="nav-item my-2 ml-lg-5 mr-lg-4">  
+      <li class="nav-item my-2 ml-lg-4 mr-lg-4">  
         <a href="login-petani.php" class="btn btn-danger btn-sm my-1" type="submit" title="Jual Produk"><i class="fas fa-plus"></i> Jual Produk</a>  
       </li>
     <?php endif ?> 
 
       <li class="nav-item dropdown">
-        <a class="nav-link mr-2 my-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-shopping-cart fa-lg text-success"></i></a>
+        <a class="nav-link mr-2 my-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="keranjang"><span class="fas fa-shopping-cart fa-lg text-success"></span>
+          <sup><span class="badge badge-danger">
+            <?php 
+            foreach ($_SESSION['keranjang'] as $kd_produk => $jumlah): ?>
+            <?php $qkeranjang=mysqli_query($koneksi,"SELECT * FROM produk WHERE kd_produk='$kd_produk'"); 
+           
+            $b = mysqli_num_rows($qkeranjang); 
+            echo "$b";
+
+            ?> 
+         
+          <?php endforeach ?>
+              
+            </span></sup>
+        </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
           <?php if (isset($_SESSION['keranjang'])): ?>
             
           <a class="dropdown-item" href="index.php?halaman=keranjang">
-            <table class="table">
+            <table class="table" id="keranjang">
               <tbody>
                 <?php foreach ($_SESSION['keranjang'] as $kd_produk => $jumlah): ?>
                   <?php $qkeranjang=mysqli_query($koneksi,"SELECT * FROM produk WHERE kd_produk='$kd_produk'"); 
@@ -97,22 +116,29 @@ if(isset($_SESSION['pelanggan'])) {
               </tbody>
             </table>
           </a>
-          <?php else: ?>
-          <a class="dropdown-item" href="#">Keranjang Kosong</a>
-          <?php endif ?>
           <div class="dropdown-divider"></div>
           <a type="submit" class="btn btn-success mx-auto btn-block" href="index.php?halaman=checkout" style="border-radius:0;">Checkout</a>
+          <?php else: ?>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item">Keranjang Kosong</a>
+          <div class="dropdown-divider"></div>
+          <?php endif ?>
         </div>
       </li>
 
     <?php if(isset($_SESSION["pelanggan"])): ?>
-      <li class="nav-item my-3 mr-sm-3">
-        <a href="#" class="text-success" type="submit" title="Pesan Masuk"><i class="fas fa-comments fa-lg"></i></a>
+    
+      <li class="nav-item dropdown">
+        <a class="nav-link mr-1 my-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-comments fa-lg text-success"></span><sup><span class="badge badge-danger">0</span></sup></a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
+          
+          <a class="dropdown-item" href="index.php?halaman=pesan"></a>
+          
+          <a class="dropdown-item" href="#">Tidak ada Pesan</a>
+        </div>
       </li>
-      <li class="nav-item my-3 mr-sm-3">
-        <a href="#" class="text-success border-0" type="submit" title="Pemberitahuan"><i class="fas fa-bell fa-lg"></i></a>
-      </li>
-       <?php else: ?> 
+
+      <?php else: ?> 
       <li class="nav-item my-1 ml-lg-1 ml-xl-1">
         <a href="daftar.php" class="btn btn-outline-warning btn-sm my-2 ml-lg-4 ml-xl-4" type="submit">Daftar</a>
       </li>
@@ -271,6 +297,7 @@ if(isset($_SESSION['pelanggan'])) {
     </div>
   </div>
 </div>
+
 
 </body>
 </html>

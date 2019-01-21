@@ -19,7 +19,7 @@
 				<h6 style="color:orange"> Rp. <?php echo number_format($perproduk['harga']);?>,- /Kg</h6>
 				<h6 class="text-secondary">Minimum Pembelian <?php echo number_format($perproduk['minimum_beli']);?> Kg</h6>
 
-			</div>
 		</div>
 	</div>
-	<?php } ?>	
+</div>
+<?php } ?>	
