@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2019 at 12:06 PM
+-- Generation Time: Jan 21, 2019 at 09:44 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -74,6 +74,30 @@ CREATE TABLE `komentar` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pembayaran`
+--
+
+CREATE TABLE `pembayaran` (
+  `id_pembayaran` int(50) NOT NULL,
+  `id_pembelian` int(50) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `bank` varchar(100) NOT NULL,
+  `no_rekening` int(50) NOT NULL,
+  `jumlah_bayar` int(50) NOT NULL,
+  `tanggal` date NOT NULL,
+  `bukti` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_pembelian`, `nama`, `bank`, `no_rekening`, `jumlah_bayar`, `tanggal`, `bukti`) VALUES
+(5, 1, 'Nurma Surya Putri', 'BNI', 264127889, 600000, '2019-01-21', '20181217_182905.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pembelian`
 --
 
@@ -82,39 +106,49 @@ CREATE TABLE `pembelian` (
   `id_user` int(25) NOT NULL,
   `tanggal_pembelian` date NOT NULL,
   `total_pembelian` int(50) NOT NULL,
-  `ongkir` int(11) NOT NULL,
-  `alamat_pengiriman` text NOT NULL
+  `alamat_pengiriman` text NOT NULL,
+  `status_pembelian` varchar(100) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pembelian`
 --
 
-INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `tanggal_pembelian`, `total_pembelian`, `ongkir`, `alamat_pengiriman`) VALUES
-(1, 5, '2019-01-02', 560000, 50000, 'Bangunjiwo, Kasihan, Bantul 55184'),
-(2, 5, '2019-01-02', 100000, 50000, 'Bangunjiwo, Kasihan, Bantul 55184'),
-(3, 5, '2019-01-02', 1280000, 50000, 'Bangunjiwo, Kasihan, Bantul 55184'),
-(4, 1, '2019-01-02', 350000, 50000, 'Bangunjiwo, Kasihan, Bantul 55184'),
-(5, 1, '2019-01-02', 280000, 0, ''),
-(6, 5, '2019-01-02', 1280000, 0, ''),
-(7, 5, '2019-01-17', 150000, 0, ''),
-(8, 5, '2019-01-18', 300000, 0, ''),
-(9, 5, '2019-01-18', 200000, 0, ''),
-(10, 5, '2019-01-18', 150000, 0, ''),
-(11, 5, '2019-01-18', 150000, 0, ''),
-(12, 5, '2019-01-18', 150000, 0, ''),
-(13, 5, '2019-01-18', 300000, 0, ''),
-(14, 5, '2019-01-18', 150000, 0, ''),
-(15, 1, '2019-01-18', 50000, 0, ''),
-(16, 1, '2019-01-18', 150000, 0, ''),
-(17, 1, '2019-01-18', 50000, 0, ''),
-(18, 1, '2019-01-18', 100000, 0, ''),
-(19, 1, '2019-01-18', 2000000, 0, ''),
-(20, 1, '2019-01-18', 50000, 0, ''),
-(21, 5, '2019-01-18', 2000000, 0, ''),
-(22, 5, '2019-01-18', 500000, 0, ''),
-(23, 5, '2019-01-19', 250000, 0, ''),
-(24, 5, '2019-01-19', 25000, 0, '');
+INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `tanggal_pembelian`, `total_pembelian`, `alamat_pengiriman`, `status_pembelian`) VALUES
+(1, 5, '2019-01-02', 560000, 'Bangunjiwo, Kasihan, Bantul 55184', 'sudah dibayar'),
+(2, 5, '2019-01-02', 100000, 'Bangunjiwo, Kasihan, Bantul 55184', 'pending'),
+(3, 5, '2019-01-02', 1280000, 'Bangunjiwo, Kasihan, Bantul 55184', 'pending'),
+(4, 1, '2019-01-02', 350000, 'Bangunjiwo, Kasihan, Bantul 55184', 'pending'),
+(5, 1, '2019-01-02', 280000, '', 'pending'),
+(6, 5, '2019-01-02', 1280000, '', 'pending'),
+(7, 5, '2019-01-17', 150000, '', 'pending'),
+(8, 5, '2019-01-18', 300000, '', 'pending'),
+(9, 5, '2019-01-18', 200000, '', 'pending'),
+(10, 5, '2019-01-18', 150000, '', 'pending'),
+(11, 5, '2019-01-18', 150000, '', 'pending'),
+(12, 5, '2019-01-18', 150000, '', 'pending'),
+(13, 5, '2019-01-18', 300000, '', 'pending'),
+(14, 5, '2019-01-18', 150000, '', 'pending'),
+(15, 1, '2019-01-18', 50000, '', 'pending'),
+(16, 1, '2019-01-18', 150000, '', 'pending'),
+(17, 1, '2019-01-18', 50000, '', 'pending'),
+(18, 1, '2019-01-18', 100000, '', 'pending'),
+(19, 1, '2019-01-18', 2000000, '', 'pending'),
+(20, 1, '2019-01-18', 50000, '', 'pending'),
+(21, 5, '2019-01-18', 2000000, '', 'pending'),
+(22, 5, '2019-01-18', 500000, '', 'pending'),
+(23, 5, '2019-01-19', 250000, '', 'pending'),
+(24, 5, '2019-01-19', 25000, '', 'pending'),
+(25, 5, '2019-01-20', 50000, '', 'pending'),
+(26, 5, '2019-01-20', 200000, '', 'pending'),
+(27, 5, '2019-01-21', 275000, '', 'pending'),
+(28, 5, '2019-01-21', 200000, 'Donotirto RT 07, Bangunjiwo, Kasihan, Bantul, D.I Yogyakarta 55184', 'pending'),
+(29, 5, '2019-01-21', 200000, 'Kaloran, Temanggung, Jawa Tengah', 'pending'),
+(30, 5, '2019-01-21', 50000, 'Kaloran, Temanggung, Jawa Tengah', 'pending'),
+(31, 5, '2019-01-21', 150000, 'Kaloran, Temangggung, Jawa Tengah', 'pending'),
+(32, 5, '2019-01-21', 100000, 'Kaloran, Temanggung, Jawa Tengah', 'pending'),
+(33, 1, '2019-01-21', 50000, 'Donotirto, Bangunjiwo, Kasihan, Bantul 55184', 'pending'),
+(34, 1, '2019-01-21', 2000000, 'Donotirto, Bangunjiwo, Kasihan, Bantul 55184', 'pending');
 
 -- --------------------------------------------------------
 
@@ -174,7 +208,20 @@ INSERT INTO `pembelian_produk` (`id_pembelian_produk`, `id_pembelian`, `kd_produ
 (33, 23, 23, 10, 'Bayam', 10000, 1, 10, 100000),
 (34, 23, 24, 10, 'Bayam Merah', 10000, 5, 50, 100000),
 (35, 23, 30, 10, 'Kangkung', 5000, 1, 10, 50000),
-(36, 24, 31, 5, 'Bayam Merah', 5000, 1, 5, 25000);
+(36, 24, 31, 5, 'Bayam Merah', 5000, 1, 5, 25000),
+(37, 25, 30, 10, 'Kangkung', 5000, 1, 10, 50000),
+(38, 26, 30, 10, 'Kangkung', 5000, 1, 10, 50000),
+(39, 26, 28, 10, 'Frambos', 15000, 1, 10, 150000),
+(40, 27, 28, 10, 'Frambos', 15000, 1, 10, 150000),
+(41, 27, 31, 5, 'Bayam Merah', 5000, 1, 5, 25000),
+(42, 27, 24, 10, 'Bayam Merah', 10000, 5, 50, 100000),
+(43, 28, 22, 10, 'Bawang Merah', 20000, 1, 10, 200000),
+(44, 29, 22, 10, 'Bawang Merah', 20000, 1, 10, 200000),
+(45, 30, 21, 10, 'Manggis', 5000, 1, 10, 50000),
+(46, 31, 28, 10, 'Frambos', 15000, 1, 10, 150000),
+(47, 32, 24, 10, 'Bayam Merah', 10000, 5, 50, 100000),
+(48, 33, 30, 10, 'Kangkung', 5000, 1, 10, 50000),
+(49, 34, 25, 10, 'Kacang Mete', 200000, 1, 10, 2000000);
 
 -- --------------------------------------------------------
 
@@ -189,6 +236,16 @@ CREATE TABLE `pesan` (
   `nama_pengirim` varchar(100) NOT NULL,
   `isi_pesan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pesan`
+--
+
+INSERT INTO `pesan` (`id_pesan`, `id_user`, `id_pengirim`, `nama_pengirim`, `isi_pesan`) VALUES
+(1, 4, 5, 'Nurma Surya', 'test'),
+(5, 1, 5, 'Nurma Surya', 'g'),
+(8, 4, 5, 'Nurma Surya', 'fffff'),
+(9, 4, 5, 'Nurma Surya', 'ff');
 
 -- --------------------------------------------------------
 
@@ -246,9 +303,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `email`, `password`, `jenis_kelamin`, `foto_user`, `alamat`, `telepon`) VALUES
-(1, 'wawan', 'wawan@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Laki-laki', 'wawan.png', 'Bantul', '08988741766'),
+(1, 'Wawan', 'wawan@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Laki-laki', 'wawan.png', 'Kasihan, Bantul, D.I Yogyakarta', '08988741766'),
 (4, 'Listyawan', 'listyawan@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Laki-laki', 'listyawan.png', 'Kasihan, Bantul', '085725813121'),
-(5, 'Nurma Surya Putri', 'nurma@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Perempuan', 'nurma.jpg', 'Kaloran, Temanggung, Jawa Tengah', '085729447145'),
+(5, 'Nurma Surya', 'nurma@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Perempuan', 'nurma.jpg', 'Kaloran, Temanggung, Jawa Tengah', '085729447145'),
 (6, 'Murni', 'murni@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Perempuan', 'murni.png', 'Ngaglik, Sleman', '08754617466'),
 (7, 'Ria', 'ria@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Perempuan', 'ria.png', 'Wonogiri, Wonogiri', '087456123478'),
 (8, 'Ridho', 'ridho@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Laki-laki', 'ridho.png', 'Tebo, Jambi', '0874562478'),
@@ -276,6 +333,12 @@ ALTER TABLE `kategori`
 ALTER TABLE `komentar`
   ADD PRIMARY KEY (`id_komentar`),
   ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD PRIMARY KEY (`id_pembayaran`);
 
 --
 -- Indexes for table `pembelian`
@@ -335,22 +398,28 @@ ALTER TABLE `komentar`
   MODIFY `id_komentar` int(50) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  MODIFY `id_pembayaran` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_pembelian` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `pembelian_produk`
 --
 ALTER TABLE `pembelian_produk`
-  MODIFY `id_pembelian_produk` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_pembelian_produk` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `pesan`
 --
 ALTER TABLE `pesan`
-  MODIFY `id_pesan` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pesan` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `produk`
@@ -363,41 +432,6 @@ ALTER TABLE `produk`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `komentar`
---
-ALTER TABLE `komentar`
-  ADD CONSTRAINT `komentar_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
-
---
--- Constraints for table `pembelian`
---
-ALTER TABLE `pembelian`
-  ADD CONSTRAINT `pembelian_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
-
---
--- Constraints for table `pembelian_produk`
---
-ALTER TABLE `pembelian_produk`
-  ADD CONSTRAINT `pembelian_produk_ibfk_1` FOREIGN KEY (`id_pembelian`) REFERENCES `pembelian` (`id_pembelian`);
-
---
--- Constraints for table `pesan`
---
-ALTER TABLE `pesan`
-  ADD CONSTRAINT `pesan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
-
---
--- Constraints for table `produk`
---
-ALTER TABLE `produk`
-  ADD CONSTRAINT `produk_ibfk_1` FOREIGN KEY (`kd_kategori`) REFERENCES `kategori` (`kd_kategori`),
-  ADD CONSTRAINT `produk_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

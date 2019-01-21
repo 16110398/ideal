@@ -1,13 +1,27 @@
 
 <section>
 	<div class="container" style="margin-top: 160px; margin-bottom: 180px;">
-		<h2>Nota Pembelian</h2>
-		<hr>
+		
 		<?php 
 		$query = mysqli_query($koneksi, "SELECT * FROM pembelian JOIN user ON pembelian.id_user=user.id_user WHERE pembelian.id_pembelian='$_GET[id]'");
 		$nota = $query->fetch_assoc();
 		?>
 
+		<?php 
+			$idpelangganyangbeli = $nota['id_user'];
+
+			$idpelangganyanglogin = $_SESSION['pelanggan']['id_user'];
+
+
+			if ($idpelangganyangbeli!==$idpelangganyanglogin) {
+				echo "<script>alert('Anda tidak memiliki akses!');</script>";
+				echo "<script>location='index.php?halaman=profil&page=pembelian';</script>";
+				exit();
+			}
+
+		 ?>
+		<h2>Nota Pembelian</h2>
+		<hr>
 		<div class="row">
 			<div class="col-md-4">
 				<h4>Pembelian</h4>
@@ -29,7 +43,7 @@
 
 			<div class="col-md-4">
 				<h4>Pengiriman</h4>
-				<p><strong>Alamat </strong>: <?php echo $nota['alamat']; ?></p>
+				<p><strong>Alamat </strong>: <?php echo $nota['alamat_pengiriman']; ?></p>
 			</div>
 		</div>
 		<table class="table table-bordered" width="500" border="1">
@@ -74,9 +88,3 @@
 </section>
 
 
- <?php 
-echo "<pre>";
-print_r($detail);
-echo "</pre>";
-
-  ?>

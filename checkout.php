@@ -70,17 +70,19 @@ if (empty($_SESSION['keranjang']) OR !isset($_SESSION['keranjang'])) {
 		</table>
 		<form method="post">
 			<div class="row">
-				<div class="col-md-4">
-					<input class="form-control" type="text" readonly value="<?php echo $_SESSION['pelanggan']['nama']; ?>">
+				<div class="col-md-3">
+					<input class="form-control" type="text" title="nama pembeli" readonly value="<?php echo $_SESSION['pelanggan']['nama']; ?>">
 				</div>
-				<div class="col-md-4">
-					<input class="form-control" type="text" readonly value="<?php echo $_SESSION['pelanggan']['telepon']; ?>">
+				<div class="col-md-3">
+					<input class="form-control" type="text" title="no telepon" readonly value="<?php echo $_SESSION['pelanggan']['telepon']; ?>">
 				</div>
-				<div class="col-md-4"></div>
+				<div class="col-md-6">
+					<textarea class="form-control" name="alamat_pengiriman" title="alamat pengiriman" placeholder="Masukan alamat pengiriman lengkap dengan kode pos!" required="Masukan alamat" rows="2"></textarea>
+				</div>
 			</div>
 			<div class="clearfix">
 				<span class="float-right">
-					<input class="btn btn-success btn-sm mt-2 float-left" type="submit" name="bayar" value="Bayar">
+					<input class="btn btn-success btn-sm mt-2 float-left" type="submit" name="bayar" value="BAYAR SEKARANG">
 				</span>
 			</div>
 		</form>
@@ -89,9 +91,10 @@ if (empty($_SESSION['keranjang']) OR !isset($_SESSION['keranjang'])) {
 
 			$idpembeli = $_SESSION['pelanggan']['id_user'];
 			$tanggal_pembelian= date('Y-m-d');
+			$alamat_pengiriman=$_POST['alamat_pengiriman'];
 			$totalbeli=$totalbelanja;
 
-			$query=mysqli_query($koneksi,"INSERT INTO pembelian (id_user,tanggal_pembelian,total_pembelian) VALUES ('$idpembeli','$tanggal_pembelian','$totalbeli')") or die("error");
+			$query=mysqli_query($koneksi,"INSERT INTO pembelian (id_user,tanggal_pembelian,total_pembelian,alamat_pengiriman) VALUES ('$idpembeli','$tanggal_pembelian','$totalbeli','$alamat_pengiriman')") or die("error");
 
 			$id_pembelian_barusan = $koneksi->insert_id;
 

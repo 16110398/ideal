@@ -79,7 +79,7 @@ $qpetani=$qdata->fetch_assoc();
 			}
 				
 			echo "<script>alert('Data produk berhasil diubah');</script>";
-			echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=profil&page=produkku '>";	
+			echo "<meta http-equiv='refresh' content='1;url=index.php?halaman=profil&page=produkku'>";	
 		
 	}
 ?>

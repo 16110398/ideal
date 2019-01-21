@@ -79,16 +79,20 @@ if(isset($_SESSION['keranjang'])) {
       <li class="nav-item dropdown">
         <a class="nav-link mr-2 my-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="keranjang"><span class="fas fa-shopping-cart fa-lg text-success"></span>
           <sup><span class="badge badge-danger">
-            <?php 
-            foreach ($_SESSION['keranjang'] as $kd_produk => $jumlah): ?>
-            <?php $qkeranjang=mysqli_query($koneksi,"SELECT * FROM produk WHERE kd_produk='$kd_produk'"); 
-           
-            $b = mysqli_num_rows($qkeranjang); 
-            echo "$b";
-
-            ?> 
-         
-          <?php endforeach ?>
+            <?php if (empty($_SESSION['keranjang']) OR !isset($_SESSION['keranjang'])): ?>
+              <?php echo "0"; ?>
+            <?php else: ?>
+              <?php 
+                  foreach ($_SESSION['keranjang'] as $kd_produk => $jumlah): ?>
+                  <?php $qkeranjang=mysqli_query($koneksi,"SELECT * FROM produk WHERE kd_produk='$kd_produk'"); 
+                  $b = mysqli_num_rows($qkeranjang); 
+                  
+                  echo ($b); 
+                ?> 
+                
+              <?php endforeach ?>
+              
+            <?php endif ?> 
               
             </span></sup>
         </a>
@@ -297,7 +301,6 @@ if(isset($_SESSION['keranjang'])) {
     </div>
   </div>
 </div>
-
 
 </body>
 </html>

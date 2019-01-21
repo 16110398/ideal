@@ -152,7 +152,7 @@ $produk = $detail->fetch_assoc();
         <form method="post">
           <div class="form-group">
             <label>Pesan :</label>
-            <textarea class="form-control" rows="5"  name="tekpesan"></textarea>
+            <textarea class="form-control" rows="5"  name="tekpesan" required="Masukan Pesan"></textarea>
           </div>
           <input type="submit" class="btn btn-primary float-right" name="kirim" value="Kirim">
         </form>
@@ -238,12 +238,12 @@ $produk = $detail->fetch_assoc();
           <div class="container">
             <h5 class="text-dark my-3 ml-3">Produk Lainnya</h5>
             <div class="row my-2 mr-1 ml-1">
-              <?php $produk = mysqli_query($koneksi, "SELECT * FROM produk JOIN user ON produk.id_user=user.id_user WHERE produk.id_user='$produk[id_user]' LIMIT 3 "); ?>
-              <?php while ($perproduk=$produk->fetch_assoc()) { ?>
+              <?php $qproduk = mysqli_query($koneksi, "SELECT * FROM produk JOIN user ON produk.id_user=user.id_user WHERE produk.id_user='$produk[id_user]' LIMIT 3 "); ?>
+              <?php while ($perproduk=$qproduk->fetch_assoc()) { ?>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4" style="padding-bottom:15px; ; margin-top: 7px;">
                   <div class="card bg-white border">
                     <div class="kontainer bg-white rounded">
-                      <a href="index.php?halaman=detail&id=<?php echo $perproduk['kd_ternak'];?>">
+                      <a href="index.php?halaman=detail&id=<?php echo $perproduk['kd_produk'];?>">
                         <div class="card-body line" style="text-align:center; overflow:hidden; padding:0;">
                           <img class="image img-fluid mx-auto" alt="responsive image" style="height:200px; width:100% ;" src="img-produk/<?php echo $perproduk['foto'];?>"> 
                           <div class="middle">
@@ -275,7 +275,13 @@ $produk = $detail->fetch_assoc();
 
 <?php 
 if(isset($_POST['kirim'])) 
+{
+   $koneksi->query("INSERT INTO pesan (id_user,id_pengirim,nama_pengirim,isi_pesan) VALUES ('$produk[id_user]','$data[id_user]','$data[nama]','$_POST[tekpesan]');") or die("error");
 
-    $con=mysqli_query($koneksi, "INSERT INTO pesan(id_user,id_pengirim,nama_pengirim,pesan) VALUES('$ternak[id_user]','$data[id_user]','$data[nama]','$_POST[tekpesan]');") or die("error");
+  echo "<script>alert('Pesan berhasil dikirim');</script>";
+}
+
+
   
 ?>
+

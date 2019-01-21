@@ -126,6 +126,12 @@
                   if ($_GET['page']=="pembelian") {
                     include 'riwayatpembelian.php';
                   }
+                  if ($_GET['page']=="penjualan") {
+                    include 'riwayatpenjualan.php';
+                  }
+                   if ($_GET['page']=="konfirmasipembayaran") {
+                    include 'konfirmasip.php';
+                  }
 
                 }else{
                   include 'myprofil.php';
