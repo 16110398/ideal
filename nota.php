@@ -79,7 +79,7 @@
 		<div class="row">
 			<div class="col-md-7">
 				<div class="alert alert-info">
-					Silahkan melakukan pembayaran sebesar <strong>Rp. <?php echo number_format($nota['total_pembelian']); ?>,-</strong> ke nomor rekening <strong>BNI 0264659916/BRI 04252774164/Mandiri 032874151/BCA 057465646</strong> a.n <strong>Ideals.id</strong>
+					<p>Silahkan melakukan pembayaran sebesar <strong>Rp. <?php echo number_format($nota['total_pembelian']); ?>,-</strong> ke nomor rekening <strong>BNI 0264659916/BRI 04252774164/Mandiri 032874151/BCA 057465646</strong> a.n <strong>Ideals.id</strong>. Konfirmasi pembayaran klik <a href="index.php?halaman=profil&page=konfirmasipembayaran&id=<?php echo $nota['id_pembelian']; ?>">disini</a>.</p>
 				</div>
 			</div>
 			

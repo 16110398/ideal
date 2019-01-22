@@ -83,7 +83,7 @@ if(isset($_SESSION['keranjang'])) {
               <?php echo "0"; ?>
             <?php else: ?>
               <?php 
-                  foreach ($_SESSION['keranjang'] as $kd_produk => $jumlah): ?>
+                  foreach ($_SESSION['keranjang'] as $kd_produk => $jumlahbeli): ?>
                   <?php $qkeranjang=mysqli_query($koneksi,"SELECT * FROM produk WHERE kd_produk='$kd_produk'"); 
                   $b = mysqli_num_rows($qkeranjang); 
                   
@@ -102,18 +102,18 @@ if(isset($_SESSION['keranjang'])) {
           <a class="dropdown-item" href="index.php?halaman=keranjang">
             <table class="table" id="keranjang">
               <tbody>
-                <?php foreach ($_SESSION['keranjang'] as $kd_produk => $jumlah): ?>
+                <?php foreach ($_SESSION['keranjang'] as $kd_produk => $jumlahbeli): ?>
                   <?php $qkeranjang=mysqli_query($koneksi,"SELECT * FROM produk WHERE kd_produk='$kd_produk'"); 
                   $belanja=$qkeranjang->fetch_assoc();
-                  $jumlahbeli=$belanja['minimum_beli']*$jumlah;
-                  $subharga=$belanja['harga']*$jumlahbeli;
+                  $jumlahpembelian=$belanja['minimum_beli']*$jumlahbeli;
+                  $subharga=$belanja['harga']*$jumlahpembelian;
 
                   ?>
                   <tr>
                     <td><img height="50px" width="50px" src="img-produk/<?php echo $belanja['foto']; ?>"></td>
                     <td><?php echo $belanja['nama_produk']; ?></td>
 
-                    <td><?php echo $jumlahbeli; ?></td>
+                    <td><?php echo $jumlahpembelian; ?></td>
                     <td>Rp. <?php echo number_format($subharga); ?>,-</td>
                   </tr>
                 <?php endforeach ?>

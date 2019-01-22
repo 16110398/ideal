@@ -55,7 +55,7 @@ $produk = $detail->fetch_assoc();
                 <form action="" method="">
                 <div class="form-group">
                   <label class="ml-2" for="email">Jumlah beli : Kg</label>
-                  <input type="number" class="form-control" id="jumlahbeli" value="<?php echo $produk['minimum_beli']; ?>">
+                  <input type="number" class="form-control" id="jumlahbeli" name="jmlbeli" min="<?php echo $produk['minimum_beli']; ?>" value="<?php echo $produk['minimum_beli']; ?>">
                 </div>
               </form>
               </div>
@@ -66,6 +66,19 @@ $produk = $detail->fetch_assoc();
                   <a href="beli.php?id=<?php echo $produk['kd_produk']; ?>" class="btn btn-success btn-block d-block" type="submit" title="Keranjang Belanja" name="beli"><i class="fas fa-shopping-cart fa-md"></i> <strong>BELI SEKARANG</strong></a>
                 </form>
               </div>
+
+              <?php 
+                  if (isset($_POST["beli"])) 
+                  {
+                    $jumlah=$_POST["jmlbeli"];
+
+                    $_SESSION["keranjang"][$kd_produk] = $jumlah;
+
+                    echo "<script>alert('Produk telah masuk ke keranjang belanja');</script>";
+                    echo "<script>location='index.php?halaman=keranjang';</script>";
+                  }
+
+               ?>
               <div class="col-12 my-3">
                 <div class="card border ml-3">
                   <p class="ml-2 mr-2 my-2 d-block"><strong>Transaksi Aman Gunakan Rekening Bersama Ideals</strong><br/>
@@ -280,7 +293,6 @@ if(isset($_POST['kirim']))
 
   echo "<script>alert('Pesan berhasil dikirim');</script>";
 }
-
 
   
 ?>
