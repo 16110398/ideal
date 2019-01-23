@@ -1,4 +1,4 @@
-<?php while ($perproduk=$produk->fetch_assoc()) { ?>
+<?php while ($perproduk=$produk2->fetch_assoc()) { ?>
 <div class="col-12 col-md-6 col-lg-4" style="padding-bottom:15px; ; margin-top: 7px;">
 	<div class="img-thumbnail kontainer shadow bg-white rounded">
 		<a href="index.php?halaman=detail&id=<?php echo $perproduk['kd_produk'];?>">

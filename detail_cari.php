@@ -58,13 +58,11 @@
 
 	</div>
 
-  <ul class="pagination justify-content-center">
+<ul class="pagination justify-content-center">
     <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
-    <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
+    <?php for ($i=1; $i<=$pages; $i++){ ?>
+	<li class="page-item"><a class="page-link" href="index.php?halaman=cari&hal=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+	<?php } ?>
     <li class="page-item"><a class="page-link" href="javascript:void(0);">Next</a></li>
   </ul>
 </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2019 at 07:10 PM
+-- Generation Time: Jan 23, 2019 at 01:28 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -21,18 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `ideals`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin`
---
-
-CREATE TABLE `admin` (
-  `id_admin` int(25) NOT NULL,
-  `nama_adm` varchar(30) NOT NULL,
-  `password_adm` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -148,7 +136,8 @@ INSERT INTO `pembelian` (`id_pembelian`, `id_user`, `tanggal_pembelian`, `total_
 (31, 5, '2019-01-21', 150000, 'Kaloran, Temangggung, Jawa Tengah', 'pending'),
 (32, 5, '2019-01-21', 100000, 'Kaloran, Temanggung, Jawa Tengah', 'pending'),
 (33, 1, '2019-01-21', 50000, 'Donotirto, Bangunjiwo, Kasihan, Bantul 55184', 'pending'),
-(34, 1, '2019-01-21', 2000000, 'Donotirto, Bangunjiwo, Kasihan, Bantul 55184', 'pending');
+(34, 1, '2019-01-21', 2000000, 'Donotirto, Bangunjiwo, Kasihan, Bantul 55184', 'pending'),
+(35, 5, '2019-01-23', 500000, 'tttt', 'pending');
 
 -- --------------------------------------------------------
 
@@ -221,7 +210,8 @@ INSERT INTO `pembelian_produk` (`id_pembelian_produk`, `id_pembelian`, `kd_produ
 (46, 31, 28, 10, 'Frambos', 15000, 1, 10, 150000),
 (47, 32, 24, 10, 'Bayam Merah', 10000, 5, 50, 100000),
 (48, 33, 30, 10, 'Kangkung', 5000, 1, 10, 50000),
-(49, 34, 25, 10, 'Kacang Mete', 200000, 1, 10, 2000000);
+(49, 34, 25, 10, 'Kacang Mete', 200000, 1, 10, 2000000),
+(50, 35, 30, 100, 'Kangkung', 5000, 1, 100, 500000);
 
 -- --------------------------------------------------------
 
@@ -274,12 +264,15 @@ INSERT INTO `produk` (`kd_produk`, `id_user`, `nama_produk`, `kd_kategori`, `ber
 (21, 1, 'Manggis', 2, '1', '30', '5000', 'manggis.jpg', '10', 'manggis yang sangat enak. berkhasiat dan bisa dikonsumsi kapanpun dan dimanapun'),
 (22, 4, 'Bawang Merah', 5, '1', '30', '20000', 'bawangmerah.jpg', '10', 'Bawang Merah lokal'),
 (24, 9, 'Bayam Merah', 1, '5', '100', '10000', 'bayammerah.jpg', '10', 'bayam merah lokal'),
-(25, 7, 'Kacang Mete', 4, '1', '500', '200000', 'kacangmete.jpg', '10', 'kacang mete kualitas super'),
+(25, 7, 'Kacang Mete', 4, '1', '500', '20000', 'kacangmete.jpg', '10', 'kacang mete kualitas super'),
 (26, 8, 'Salad buah', 6, '1', '20', '35000', 'saladbuah.jpg', '2', 'salad buah segar'),
-(27, 5, 'Mangga Organik', 1, '2', '30', '150000', 'tanamanmangga.jpg', '1', 'Jual bibit mangga organik'),
+(27, 5, 'Mangga Organik', 3, '2', '30', '80000', 'tanamanmangga.jpg', '1', 'Jual bibit mangga organik'),
 (28, 4, 'Frambos', 2, '1', '30', '15000', 'frambos.jpg', '10', 'frambos kualitas premium'),
 (30, 5, 'Kangkung', 1, '1', '200', '5000', 'kangkung.JPG', '10', 'Jual Sayur Kangkung Segar'),
-(31, 5, 'Bayam Merah', 1, '1', '100', '5000', 'bayammerah.jpg', '5', 'kangkung segar');
+(31, 5, 'Bayam Merah', 1, '1', '100', '5000', 'bayammerah.jpg', '5', 'kangkung segar'),
+(32, 1, 'Brokoli Hijau', 1, '1', '150', '5000', 'brokoli.jpg', '10', 'Jual Brokoli Segar'),
+(33, 1, 'Terong Segar', 1, '1', '250', '2000', 'terong.jpg', '15', 'Jual Terong Segar'),
+(34, 1, 'Lobak Putih', 1, '1', '100', '5000', 'lobakputih.jpg', '10', 'Jual Lobak Putih');
 
 -- --------------------------------------------------------
 
@@ -314,12 +307,6 @@ INSERT INTO `user` (`id_user`, `nama`, `email`, `password`, `jenis_kelamin`, `fo
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id_admin`);
 
 --
 -- Indexes for table `kategori`
@@ -380,12 +367,6 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id_admin` int(25) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
@@ -407,13 +388,13 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_pembelian` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `pembelian_produk`
 --
 ALTER TABLE `pembelian_produk`
-  MODIFY `id_pembelian_produk` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_pembelian_produk` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `pesan`
@@ -425,7 +406,7 @@ ALTER TABLE `pesan`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `kd_produk` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `kd_produk` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `user`

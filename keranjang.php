@@ -32,7 +32,7 @@ if (empty($_SESSION['keranjang']) OR !isset($_SESSION['keranjang'])) {
 				<?php foreach ($_SESSION['keranjang'] as $kd_produk => $jumlah): ?>
 					<?php $qkeranjang=mysqli_query($koneksi,"SELECT * FROM produk WHERE kd_produk='$kd_produk'"); 
 					$belanja=$qkeranjang->fetch_assoc();
-					$jumlahbeli=$belanja['minimum_beli']*$jumlah;
+					$jumlahbeli=$jumlah;
 					$subharga=$belanja['harga']*$jumlahbeli;
 					
  			//echo "<pre>";
@@ -43,7 +43,7 @@ if (empty($_SESSION['keranjang']) OR !isset($_SESSION['keranjang'])) {
 						<td><?php echo $no; ?></td>
 						<td><?php echo $belanja['nama_produk']; ?></td>
 						<td>Rp. <?php echo number_format($belanja['harga']); ?>,-</td>
-						<td><?php echo $jumlahbeli; ?> Kg</td>
+						<td><?php echo $jumlah; ?> Kg</td>
 						<td><?php echo number_format($subharga); ?></td>
 						<td>
 							<a title="hapus" href="hapuskeranjang.php?id=<?php echo $kd_produk; ?>"><i class="fas fa-trash-alt fa-lg"></i></a>

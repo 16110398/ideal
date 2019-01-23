@@ -136,7 +136,7 @@ if(isset($_SESSION['keranjang'])) {
         <a class="nav-link mr-1 my-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-comments fa-lg text-success"></span><sup><span class="badge badge-danger">0</span></sup></a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" >
           
-          <a class="dropdown-item" href="index.php?halaman=pesan"></a>
+          <a class="dropdown-item" href="#"></a>
           
           <a class="dropdown-item" href="#">Tidak ada Pesan</a>
         </div>

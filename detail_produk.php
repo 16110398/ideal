@@ -52,22 +52,18 @@ $produk = $detail->fetch_assoc();
             </div>
             <div class="row mr-1">
               <div class="col-12 ml-2">
-                <form action="" method="">
+                <form action="" method="post">
                 <div class="form-group">
                   <label class="ml-2" for="email">Jumlah beli : Kg</label>
-                  <input type="number" class="form-control" id="jumlahbeli" name="jmlbeli" min="<?php echo $produk['minimum_beli']; ?>" value="<?php echo $produk['minimum_beli']; ?>">
+                  <input type="number" class="form-control" required="masukan jumlah beli" name="jmlbeli" min="<?php echo $produk['minimum_beli']; ?>"  >
+                </div>
+                <div class="form-group">
+                   <button class="btn btn-success btn-block d-block" type="submit" title="Keranjang Belanja" name="beli"><i class="fas fa-shopping-cart fa-md"></i> <strong>BELI SEKARANG</strong></button>
                 </div>
               </form>
               </div>
             </div>
-            <div class="row mr-1">
-              <div class="col-12 ml-2">
-                <form method="post">
-                  <a href="beli.php?id=<?php echo $produk['kd_produk']; ?>" class="btn btn-success btn-block d-block" type="submit" title="Keranjang Belanja" name="beli"><i class="fas fa-shopping-cart fa-md"></i> <strong>BELI SEKARANG</strong></a>
-                </form>
-              </div>
-
-              <?php 
+             <?php 
                   if (isset($_POST["beli"])) 
                   {
                     $jumlah=$_POST["jmlbeli"];
@@ -79,6 +75,7 @@ $produk = $detail->fetch_assoc();
                   }
 
                ?>
+            <div class="row mr-1">
               <div class="col-12 my-3">
                 <div class="card border ml-3">
                   <p class="ml-2 mr-2 my-2 d-block"><strong>Transaksi Aman Gunakan Rekening Bersama Ideals</strong><br/>
@@ -87,6 +84,7 @@ $produk = $detail->fetch_assoc();
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>

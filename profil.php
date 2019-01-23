@@ -89,12 +89,12 @@
         </div>
         <div class="row mb-3">
           <div class="col-12">
-            <a class="text-success" href="index.php?halaman=profil&page=penjualan" style="text-decoration: none;"><strong><i class="fas fa-envelope"></i> Pesan</strong></a>
+            <a class="text-success" href="index.php?halaman=profil&page=pesan" style="text-decoration: none;"><strong><i class="fas fa-envelope"></i> Pesan</strong></a>
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-12">
-            <a class="text-success" href="index.php?halaman=profil&page=penjualan" style="text-decoration: none;"><strong><i class="fas fa-comment-dots"></i> Komentar</strong></a>
+            <a class="text-success" href="index.php?halaman=profil&page=komentar" style="text-decoration: none;"><strong><i class="fas fa-comment-dots"></i> Komentar</strong></a>
           </div>
         </div>
 
