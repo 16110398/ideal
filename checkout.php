@@ -43,7 +43,7 @@ if (empty($_SESSION['keranjang']) OR !isset($_SESSION['keranjang'])) {
 				<?php foreach ($_SESSION['keranjang'] as $kd_produk => $jumlah): ?>
 					<?php $qkeranjang=mysqli_query($koneksi,"SELECT * FROM produk WHERE kd_produk='$kd_produk'"); 
 					$belanja=$qkeranjang->fetch_assoc();
-					$jumlahbeli=$belanja['minimum_beli']*$jumlah;
+					$jumlahbeli=$jumlah;
 					$subharga=$belanja['harga']*$jumlahbeli;
  			//echo "<pre>";
  			//print_r($belanja);
@@ -106,7 +106,7 @@ if (empty($_SESSION['keranjang']) OR !isset($_SESSION['keranjang'])) {
 				$nama_produk=$produk['nama_produk'];
 				$berat_produk=$produk['berat'];
 				$harga_produk=$produk['harga'];
-				$jumlahbeli=$produk['minimum_beli']*$jumlah_produk;
+				$jumlahbeli=$jumlah_produk;
 				$subberat = $produk['berat']*$jumlahbeli;
 				$subharga = $produk['harga']*$jumlahbeli;
 				$query2=mysqli_query($koneksi,"INSERT INTO pembelian_produk (id_pembelian,kd_produk,jumlah_produk,nama,berat,harga,subberat,subharga) VALUES ('$id_pembelian_barusan','$kd_produk','$jumlahbeli','$nama_produk','$berat_produk','$harga_produk','$subberat','$subharga')") or die("error");
